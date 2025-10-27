@@ -21,7 +21,7 @@ function App() {
 
     // Try Executa os comandos
     try{
-      const API_KEY = "5087";
+      const API_KEY = "50878f4678cd0841144b44b2fca0ccc0";
       const url = "";
       const resposta = await fetch(url);
 
@@ -132,3 +132,4 @@ function App() {
 }
 
 export default App
+
