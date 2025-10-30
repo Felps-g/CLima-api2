@@ -22,7 +22,7 @@ function App() {
     // Try Executa os comandos
     try{
       const API_KEY = "50878f4678cd0841144b44b2fca0ccc0";
-      const url = "";
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${cidade}&appid=${API_KEY}&units=metric&lang=pt_br`;
       const resposta = await fetch(url);
 
       if(!resposta.ok){
@@ -37,8 +37,14 @@ function App() {
       setClima(null);
     }finally{
       setCarregando(false);
-    }
-  }
+    };
+  };
+    const handleKeyPress = (e) =>{
+        if (e.key === "Enter"){
+        buscarClima();
+        }
+      }
+  
   return (
     <>
       <div className="container">
@@ -57,8 +63,16 @@ function App() {
               <input 
                 type="text"
                 placeholder="Digite o nome da cidade.."
+                value={cidade}
+                onChange={(e) => setCidade(e.target.value)}
+                onKeyDown = {handleKeyPress}
               />
-              <button>Buscar</button>
+              <button
+              onClick={buscarClima}
+              disabled={carregando}
+              >
+              {carregando ? "Buscando..." : "Buscar"}
+              </button>
             </div>
           </div>
 
@@ -132,4 +146,3 @@ function App() {
 }
 
 export default App
-
